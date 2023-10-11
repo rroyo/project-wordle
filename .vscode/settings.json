@@ -1,0 +1,4 @@
+{
+  "solidity.formatter": "forge",
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

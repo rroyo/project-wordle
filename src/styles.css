@@ -2,6 +2,7 @@
   Theme and global variables
 */
 html {
+  background-color: #777;
   overflow-y: scroll;
 
   --game-spacing: 32px;
@@ -13,7 +14,7 @@ html {
   --color-gray-100: hsl(0deg 0% 10%);
   --color-gray-300: hsl(0deg 0% 25%);
   --color-gray-500: hsl(0deg 0% 50%);
-  --color-gray-700: hsl(0deg 0% 75%);
+  --color-gray-700: hsl(0, 0%, 15%);
   --color-gray-900: hsl(0deg 0% 90%);
 }
 
