@@ -1,23 +1,20 @@
 import React from 'react';
 import { NUM_OF_LETTERS_PER_WORD } from '../../constants';
+import { checkGuess } from '../../game-helpers';
 
-function Form({ onGuessing }) {
+function Form({ onGuessing, answer, disableForm }) {
   const [guess, setGuess] = React.useState('');
+  const [disabled, setDisabled] = React.useState(false);
 
   function onChangeHandler(event) {
     setGuess(event.target.value.toUpperCase());
   }
 
-  function splitInLetters() {
-    return guess.split('').map(letter => ({
-      letter,
-      key: crypto.randomUUID(),
-    }));
-  }
-
   function submitHandler(event) {
     event.preventDefault();
-    onGuessing(splitInLetters(guess));
+    const newGuess = checkGuess(guess, answer);
+    onGuessing(newGuess);
+    setDisabled(disableForm);
     setGuess('');
   }
 
@@ -31,6 +28,7 @@ function Form({ onGuessing }) {
           pattern={`[a-zA-Z]{${NUM_OF_LETTERS_PER_WORD}}`}
           onChange={onChangeHandler}
           value={guess}
+          disabled={disabled}
         />
       </form>
     </div>
