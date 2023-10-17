@@ -25,6 +25,7 @@ function Form({ onGuessing, answer, disableForm }) {
           id="guess-input"
           type="text"
           pattern={`[a-zA-Z]{${NUM_OF_LETTERS_PER_WORD}}`}
+          title="5 letter word"
           onChange={onChangeHandler}
           value={guess}
           disabled={disableForm}
