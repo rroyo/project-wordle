@@ -4,7 +4,6 @@ import { checkGuess } from '../../game-helpers';
 
 function Form({ onGuessing, answer, disableForm }) {
   const [guess, setGuess] = React.useState('');
-  const [disabled, setDisabled] = React.useState(false);
 
   function onChangeHandler(event) {
     setGuess(event.target.value.toUpperCase());
@@ -13,8 +12,8 @@ function Form({ onGuessing, answer, disableForm }) {
   function submitHandler(event) {
     event.preventDefault();
     const newGuess = checkGuess(guess, answer);
+    newGuess.word = guess;
     onGuessing(newGuess);
-    setDisabled(disableForm);
     setGuess('');
   }
 
@@ -28,7 +27,7 @@ function Form({ onGuessing, answer, disableForm }) {
           pattern={`[a-zA-Z]{${NUM_OF_LETTERS_PER_WORD}}`}
           onChange={onChangeHandler}
           value={guess}
-          disabled={disabled}
+          disabled={disableForm}
         />
       </form>
     </div>

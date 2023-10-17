@@ -9,45 +9,42 @@ import Banner from '../Banner';
 
 // Pick a random word on every page load.
 const answer = sample(WORDS);
+
 // To make debugging easier, we'll log the solution in the console.
 console.info({ answer });
-
-//TODO: no puc fer gameEnded, no s'acaba, l'estat no està ben fet
 
 function Game() {
   const [guesses, setGuesses] = React.useState([]);
   const [gameEnded, setGameEnded] = React.useState(false);
-  let playerWins = false;
-  let lastGuess = '';
-  let disableForm = false;
+  const [disabled, setDisabled] = React.useState(false);
+  const [playerWins, setPlayerWins] = React.useState(false);
 
   function guessHandler(guess) {
-    lastGuess = guess;
+    gameHasEnded(guess.word);
     setGuesses([...guesses, guess]);
   }
 
-  function gameHasEnded() {
-    if (lastGuess === answer) {
-      playerWins = true;
-      disableForm = true;
+  function gameHasEnded(word) {
+    console.info({ word });
+    if (word === answer) {
+      setPlayerWins(true);
+      setDisabled(true);
       setGameEnded(true);
       return true;
     }
 
-    if (guesses.length >= NUM_OF_GUESSES_ALLOWED) {
-      playerWins = false;
-      disableForm = true;
+    if (guesses.length >= NUM_OF_GUESSES_ALLOWED - 1) {
+      setPlayerWins(false);
+      setDisabled(true);
       setGameEnded(true);
       return true;
     }
   }
-
-  gameHasEnded();
 
   return (
     <>
       <GuessResults guesses={guesses} />
-      <Form onGuessing={guessHandler} answer={answer} disableForm={disableForm} />
+      <Form onGuessing={guessHandler} answer={answer} disableForm={disabled} />
       {gameEnded ? <Banner outcome={playerWins} answer={answer} numGuess={guesses.length} /> : ''}
     </>
   );
