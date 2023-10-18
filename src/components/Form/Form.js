@@ -12,7 +12,7 @@ function Form({ onGuessing, answer, disableForm }) {
   function submitHandler(event) {
     event.preventDefault();
     const newGuess = checkGuess(guess, answer);
-    newGuess.word = guess;
+    newGuess.word = guess; // Used inside Game.js logic
     onGuessing(newGuess);
     setGuess('');
   }
@@ -24,8 +24,10 @@ function Form({ onGuessing, answer, disableForm }) {
         <input
           id="guess-input"
           type="text"
+          required
+          maxLength={5}
+          title="5 letters word"
           pattern={`[a-zA-Z]{${NUM_OF_LETTERS_PER_WORD}}`}
-          title="5 letter word"
           onChange={onChangeHandler}
           value={guess}
           disabled={disableForm}

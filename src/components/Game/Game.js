@@ -25,7 +25,6 @@ function Game() {
   }
 
   function gameHasEnded(word) {
-    console.info({ word });
     if (word === answer) {
       setPlayerWins(true);
       setDisabled(true);
