@@ -29,14 +29,14 @@ function Game() {
       setPlayerWins(true);
       setDisabled(true);
       setGameEnded(true);
-      return true;
+      return;
     }
 
     if (guesses.length >= NUM_OF_GUESSES_ALLOWED - 1) {
       setPlayerWins(false);
       setDisabled(true);
       setGameEnded(true);
-      return true;
+      return;
     }
   }
 

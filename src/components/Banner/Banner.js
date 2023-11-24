@@ -2,7 +2,7 @@ import React from 'react';
 
 function Banner({ answer, numGuess, outcome }) {
   const win = (
-    <div class="happy banner">
+    <div className="happy banner">
       <p>
         <strong>Congratulations!</strong> Got it in
         <strong> {numGuess} guesses</strong>.
@@ -11,7 +11,7 @@ function Banner({ answer, numGuess, outcome }) {
   );
 
   const lose = (
-    <div class="sad banner">
+    <div className="sad banner">
       <p>
         Sorry, the correct answer is <strong>{answer}</strong>.
       </p>
