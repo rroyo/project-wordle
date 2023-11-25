@@ -7,7 +7,11 @@ function Guess({ rowKey, guess }) {
     <>
       <p className="guess" key={rowKey} data-key={rowKey}>
         {range(NUM_OF_LETTERS_PER_WORD).map(index => (
-          <span className={`cell ${guess ? guess[index].status : ''}`} key={index} data-key={index}>
+          <span
+            className={`cell${guess ? ' ' + guess[index].status : ''}`}
+            key={index}
+            data-key={index}
+          >
             {guess ? guess[index].letter : ''}
           </span>
         ))}
